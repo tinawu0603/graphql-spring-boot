@@ -108,7 +108,7 @@ import org.springframework.web.util.UrlPathHelper;
     havingValue = "true",
     matchIfMissing = true)
 @AutoConfigureAfter({GraphQLJavaToolsAutoConfiguration.class, JacksonAutoConfiguration.class})
-@EnableConfigurationProperties({GraphQLServletProperties.class, AsyncServletProperties.class})
+@EnableConfigurationProperties({GraphQLServletProperties.class, AsyncServletProperties.class, GraphQLWebsocketServletProperties.class})
 public class GraphQLWebAutoConfiguration {
 
   public static final String QUERY_EXECUTION_STRATEGY = "queryExecutionStrategy";

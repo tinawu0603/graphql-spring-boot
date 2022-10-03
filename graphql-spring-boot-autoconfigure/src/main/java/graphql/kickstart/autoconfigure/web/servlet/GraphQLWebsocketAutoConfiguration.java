@@ -42,6 +42,7 @@ import org.springframework.web.socket.server.standard.ServerEndpointRegistration
     matchIfMissing = true)
 @AutoConfigureAfter({GraphQLJavaToolsAutoConfiguration.class, GraphQLWebAutoConfiguration.class})
 @EnableConfigurationProperties({
+    GraphQLWebsocketServletProperties.class,
   GraphQLSubscriptionApolloProperties.class,
   GraphQLSubscriptionWebsocketProperties.class
 })
@@ -57,6 +58,7 @@ public class GraphQLWebsocketAutoConfiguration {
       GraphQLInvoker graphQLInvoker,
       GraphQLObjectMapper graphQLObjectMapper,
       @Autowired(required = false) Collection<SubscriptionConnectionListener> connectionListeners) {
+    System.out.println("GraphQL Websocket Auto Configuration GraphQL websocket servlet.");
     Set<SubscriptionConnectionListener> listeners = new HashSet<>();
     if (connectionListeners != null) {
       listeners.addAll(connectionListeners);
@@ -78,6 +80,7 @@ public class GraphQLWebsocketAutoConfiguration {
   @Bean
   @ConditionalOnClass(ServerContainer.class)
   public ServerEndpointRegistration serverEndpointRegistration(GraphQLWebsocketServlet servlet) {
+    System.out.println("GraphQL Websocket Auto Configuration GraphQL server endpoint registration websocket servlet.");
     return new GraphQLWsServerEndpointRegistration(websocketProperties.getPath(), servlet);
   }
 

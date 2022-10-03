@@ -20,6 +20,13 @@
 buildscript {
     pluginManagement {
         repositories {
+            maven {
+                url "https://repository.mark43.io/artifactory/all/"
+            }
+            maven {
+                url "https://plugins.gradle.org/m2/"
+            }
+            mavenCentral()
             gradlePluginPortal()
         }
     }

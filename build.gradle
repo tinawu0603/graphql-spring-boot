@@ -22,18 +22,19 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     id "org.springframework.boot" version "$LIB_SPRING_BOOT_VER" apply false
-    id "org.sonarqube" version "$PLUGIN_SONARQUBE_VER"
+//    id "org.sonarqube" version "$PLUGIN_SONARQUBE_VER"
     id "jacoco"
-    id "io.github.gradle-nexus.publish-plugin" version "$PLUGIN_NEXUS_PUBLISH_VER"
+    id 'maven-publish'
+//    id "io.github.gradle-nexus.publish-plugin" version "$PLUGIN_NEXUS_PUBLISH_VER"
 }
 
-sonarqube {
-    properties {
-        property "sonar.projectKey", "graphql-java-kickstart_graphql-spring-boot"
-        property "sonar.organization", "graphql-java-kickstart"
-        property "sonar.host.url", "https://sonarcloud.io"
-    }
-}
+//sonarqube {
+//    properties {
+//        property "sonar.projectKey", "graphql-java-kickstart_graphql-spring-boot"
+//        property "sonar.organization", "graphql-java-kickstart"
+//        property "sonar.host.url", "https://sonarcloud.io"
+//    }
+//}
 
 def bomProjectName = "graphql-spring-boot-dependencies"
 
@@ -41,7 +42,7 @@ subprojects {
     apply plugin: 'idea'
     if (it.name != bomProjectName) {
         apply plugin: 'jacoco'
-        apply plugin: 'org.sonarqube'
+//        apply plugin: 'org.sonarqube'
         apply plugin: 'java'
         apply plugin: 'java-library'
         apply plugin: "io.spring.dependency-management"
@@ -193,14 +194,14 @@ subprojects {
     }
 }
 
-nexusPublishing {
-    repositories {
-        sonatype {
-            username = System.env.OSS_USER_TOKEN_KEY ?: project.findProperty('OSS_USER_TOKEN_KEY') ?: ''
-            password = System.env.OSS_USER_TOKEN_PASS ?: project.findProperty('OSS_USER_TOKEN_PASS') ?: ''
-        }
-    }
-}
+//nexusPublishing {
+//    repositories {
+//        sonatype {
+//            username = System.env.OSS_USER_TOKEN_KEY ?: project.findProperty('OSS_USER_TOKEN_KEY') ?: ''
+//            password = System.env.OSS_USER_TOKEN_PASS ?: project.findProperty('OSS_USER_TOKEN_PASS') ?: ''
+//        }
+//    }
+//}
 
 wrapper {
     distributionType = Wrapper.DistributionType.ALL
